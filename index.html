@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohid Raheel Khan | ML & Full-Stack Engineer</title>
+<meta name="description" content="Mohid Raheel Khan: AI/ML engineer and full-stack developer building RAG systems, ML pipelines and production web apps. CS at FAST NUCES Karachi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c0f; --panel:#101419; --panel2:#161b21; --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.14);
+  --text:#e9e6de; --muted:#8b919b; --amber:#f2b33d; --amber-d:#b9832a; --ct:#6ea4ee; --red:#e5484d; --green:#8fd16a;
+  --head:'Rajdhani',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;position:relative}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);}
+::selection{background:var(--amber);color:#111}
+a{color:inherit}
+kbd{font-family:var(--mono);font-size:11px;color:var(--amber);border:1px solid var(--line2);padding:0 5px;border-radius:2px;line-height:1.5}
+
+/* ── CROSSHAIR ── */
+@media (pointer:fine){ body.xh, body.xh *{cursor:none!important} }
+#xhair{position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:10000;--gap:4px;--len:7px;--c:#7dff6a;display:none}
+body.xh #xhair{display:block}
+#xhair i{position:absolute;background:var(--c);box-shadow:0 0 0 1px rgba(0,0,0,.55);transition:all .09s ease-out}
+#xhair .t{width:2px;height:var(--len);left:-1px;bottom:var(--gap)}
+#xhair .b{width:2px;height:var(--len);left:-1px;top:var(--gap)}
+#xhair .l{height:2px;width:var(--len);top:-1px;right:var(--gap)}
+#xhair .r{height:2px;width:var(--len);top:-1px;left:var(--gap)}
+#xhair .d{width:2px;height:2px;left:-1px;top:-1px}
+#xhair.hover{--gap:9px;--c:var(--amber)}
+#xhair.fire{--gap:13px}
+.bhole{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;pointer-events:none;z-index:40;
+  background:radial-gradient(circle,#000 0 28%,#1d1a16 38%,rgba(150,130,100,.45) 48%,transparent 66%);animation:holefade 2.4s forwards}
+@keyframes holefade{0%{transform:scale(.4);opacity:1}10%{transform:scale(1)}75%{opacity:1}100%{opacity:0}}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;z-index:9000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .5s,visibility .5s}
+#loader.done{opacity:0;visibility:hidden}
+.ld-map{font-family:var(--mono);font-size:12px;letter-spacing:4px;color:var(--muted)}
+.ld-name{font-family:var(--head);font-weight:700;font-size:44px;letter-spacing:2px}
+.ld-name span{color:var(--amber)}
+.ld-bar{width:min(360px,70vw);height:4px;background:var(--line);overflow:hidden}
+.ld-bar i{display:block;height:100%;width:40%;background:var(--amber);animation:ld 1.1s ease-in-out infinite}
+@keyframes ld{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+.ld-tip{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 28px;
+  background:linear-gradient(180deg,rgba(10,12,15,.92),rgba(10,12,15,0))}
+.nav-logo{font-family:var(--head);font-weight:700;font-size:24px;letter-spacing:2px;text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{display:flex;gap:8px;align-items:center;padding:5px 11px;font-family:var(--head);font-weight:600;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid transparent;transition:.15s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);border-color:var(--line2);background:rgba(255,255,255,.03)}
+.snd-btn{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);background:none;border:1px solid var(--line2);padding:5px 10px}
+.snd-btn[aria-pressed="true"]{color:var(--amber);border-color:var(--amber)}
+@media (max-width:820px){.nav-links{display:none} nav{padding:12px 18px}}
+
+/* ── HERO ── */
+#hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:center;padding:0 7vw;background:var(--bg)}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-vig{position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse 70% 70% at 35% 50%,rgba(10,12,15,.15),rgba(10,12,15,.75)),linear-gradient(90deg,rgba(10,12,15,.55),transparent 55%)}
+.hero-content{position:relative;z-index:2;max-width:820px}
+.hero-eyebrow{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.5px}
+.hero-name{font-family:var(--head);font-weight:700;font-size:clamp(64px,11vw,150px);line-height:.84;text-transform:uppercase;margin:16px 0 24px;text-shadow:0 6px 40px rgba(0,0,0,.7)}
+.hero-name .word{display:block;width:max-content}
+.hero-name .w3{color:var(--amber)}
+.js .hero-name .word{opacity:0}
+.hero-name .word.hit{animation:stamp .45s cubic-bezier(.2,1.5,.4,1) forwards}
+.hero-name .word.instant{opacity:1;animation:none}
+@keyframes stamp{0%{opacity:0;transform:scale(1.35) translateX(-10px);filter:blur(8px) brightness(3)}35%{opacity:1;filter:blur(0) brightness(2.2)}100%{opacity:1;transform:none;filter:none}}
+#hero.shake .hero-content{animation:shake .22s linear}
+@keyframes shake{0%,100%{transform:none}20%{transform:translate(-5px,3px)}40%{transform:translate(4px,-3px)}60%{transform:translate(-3px,-2px)}80%{transform:translate(2px,2px)}}
+.hero-desc{max-width:540px;color:#c9c6be;font-size:17px}
+.hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.js .hero-fade{opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s;transition-delay:var(--d,0s)}
+.intro-done .hero-fade{opacity:1;transform:none}
+.btn-primary,.btn-ghost{font-family:var(--head);font-weight:700;font-size:16px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:12px 26px;transition:.15s;display:inline-block}
+.btn-primary{background:var(--amber);color:#14110a;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.btn-primary:hover{background:#ffc75a}
+.btn-ghost{border:1px solid var(--line2);color:var(--text);background:rgba(10,12,15,.4)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.hero-hint{position:absolute;bottom:26px;left:0;right:0;justify-content:center;z-index:2;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;white-space:nowrap;display:flex;gap:16px}
+.hero-hint .touch{display:none}
+@media (pointer:coarse){.hero-hint .key{display:none}.hero-hint .touch{display:inline}}
+
+/* ── HUD ── */
+#hud{position:fixed;inset:0;pointer-events:none;z-index:60;font-family:var(--mono)}
+.hud-box{position:absolute;background:rgba(10,12,15,.55);border:1px solid var(--line);backdrop-filter:blur(3px);transition:opacity .3s}
+.hud-vitals,.hud-ammo{opacity:0}
+body.in-hero .hud-vitals,body.in-hero .hud-ammo{opacity:1}
+.hud-vitals{left:24px;bottom:22px;display:flex;gap:22px;padding:8px 16px;font-family:var(--head);font-weight:700;font-size:30px;line-height:1}
+.hud-vitals span{display:flex;align-items:center;gap:8px}
+.hud-vitals svg{width:20px;height:20px}
+.hud-ammo{right:24px;bottom:22px;padding:8px 16px;display:flex;align-items:baseline;gap:8px;font-family:var(--head);font-weight:700}
+.hud-ammo b{font-size:36px;line-height:1}
+.hud-ammo b.low{color:var(--red)}
+.hud-ammo span{font-size:18px;color:var(--muted)}
+.hud-ammo .rl{position:absolute;right:0;top:-24px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--amber);opacity:0}
+#hud.reloading .hud-ammo .rl{opacity:1;animation:blink .5s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.hud-radar{left:22px;top:76px;width:150px;padding:6px;display:none;pointer-events:auto}
+.hud-radar svg{display:block;width:136px;height:136px}
+.hud-radar rect{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.18);stroke-width:1;cursor:pointer;transition:.2s}
+.hud-radar rect.on{fill:rgba(242,179,61,.16);stroke:var(--amber)}
+.hud-radar text{fill:var(--muted);font-family:var(--mono);font-size:6.5px;letter-spacing:.5px;pointer-events:none}
+.hud-loc{display:block;margin-top:6px;font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.hud-loc b{color:var(--text);font-weight:500}
+@media (min-width:1380px){.hud-radar{display:block} #hero{padding-left:max(7vw,210px)}}
+@media (max-width:820px){.hud-vitals{display:none}.hud-ammo{right:14px;bottom:14px}}
+
+/* kill feed */
+#killfeed{position:fixed;top:70px;right:22px;z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:5px;pointer-events:none}
+.kf{display:flex;align-items:center;gap:9px;padding:5px 11px;background:rgba(10,12,15,.78);border:1px solid rgba(229,72,77,.75);font-family:var(--head);font-weight:700;font-size:15px;letter-spacing:.8px;text-transform:uppercase;animation:kfin .25s ease-out;transition:opacity .4s,transform .4s}
+.kf.out{opacity:0;transform:translateX(16px)}
+.kf-a{color:var(--ct)}
+.kf-v{color:var(--amber)}
+.kf svg{height:14px;color:#ddd}
+.kf .kf-hs{width:14px;color:var(--red)}
+@keyframes kfin{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@media (max-width:600px){#killfeed{top:58px;right:10px}.kf{font-size:12px;padding:4px 8px}}
+
+/* ── TICKER ── */
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);padding:12px 0;position:relative}
+.ticker-wrap::before{content:"RADIO";position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;padding:0 16px;background:var(--amber);color:#14110a;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:2px}
+.ticker{display:flex;width:max-content;animation:tick 40s linear infinite}
+.ticker-item{font-family:var(--head);font-weight:600;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 22px;white-space:nowrap}
+.ticker-item::after{content:"◆";color:var(--amber-d);font-size:9px;margin-left:44px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+section{position:relative;padding:120px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:54px}
+.sec-key{font-family:var(--mono);font-weight:700;font-size:14px;color:#14110a;background:var(--amber);padding:3px 10px;margin-top:4px}
+.sec-label{font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--amber);text-transform:uppercase}
+.section-title{font-family:var(--head);font-weight:700;font-size:clamp(40px,5.5vw,70px);line-height:.95;text-transform:uppercase;margin-top:6px}
+.panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+.tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line2);padding:2px 8px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about-text{color:#c9c6be;font-size:17px;margin-bottom:18px}
+.about-text strong{color:var(--text);font-weight:600}
+.player-card{padding:22px}
+.pc-top{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.pc-avatar{width:56px;height:56px;display:grid;place-items:center;background:var(--ct);color:#0b1220;font-family:var(--head);font-weight:700;font-size:24px}
+.pc-name{font-family:var(--head);font-weight:700;font-size:20px;letter-spacing:1px}
+.pc-sub{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+.pc-rank{margin-left:auto;width:44px;color:var(--amber)}
+.pc-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:18px;border:1px solid var(--line)}
+.stat-card{background:var(--panel);padding:18px}
+.stat-num{font-family:var(--head);font-weight:700;font-size:40px;line-height:1;color:var(--text)}
+.stat-label{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:6px}
+.pc-status{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1px}
+.pc-status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+.edu{padding:18px 20px;margin-top:8px}
+.edu-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--head);font-weight:700;font-size:18px}
+.edu-yr{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+.edu-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;margin-top:10px}
+.medals{margin-top:44px}
+.medal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:14px}
+.medal{display:flex;gap:14px;align-items:center;padding:16px 18px}
+.medal svg{width:28px;height:28px;flex:none;color:var(--amber)}
+.medal-name{font-family:var(--head);font-weight:700;font-size:17px;line-height:1.15}
+.medal-meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+.pj-private{color:var(--muted);cursor:default}
+/* experience scoreboard */
+.sb-head,.sb-row{display:grid;grid-template-columns:150px 1fr 100px;gap:24px}
+.sb-head{padding:12px 24px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--muted);border-bottom:1px solid var(--line)}
+.sb-head span:last-child,.sb-res{text-align:right}
+.sb-row{padding:28px 24px;border-bottom:1px solid var(--line);transition:background .2s}
+.sb-row:last-child{border-bottom:none}
+.sb-row:hover{background:rgba(255,255,255,.02)}
+.exp-date{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.exp-role{font-family:var(--head);font-weight:700;font-size:24px;line-height:1.1}
+.exp-company{font-family:var(--mono);font-size:12px;color:var(--ct);margin:4px 0 12px}
+.exp-desc{color:#c3c0b8;font-size:15px;margin-bottom:10px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sb-res span{display:inline-block;font-family:var(--head);font-weight:700;font-size:14px;letter-spacing:1.5px;padding:3px 10px;border:1px solid}
+.res-mvp{color:var(--amber);border-color:var(--amber)}
+.res-win{color:var(--green);border-color:var(--green)}
+
+/* projects loadout */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.project-card{position:relative;padding:24px;display:flex;flex-direction:column;transition:transform .15s ease-out,border-color .2s;transform-style:preserve-3d;overflow:hidden}
+.project-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--rar)}
+.project-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--rar) 14%,transparent),transparent 60%)}
+.project-card:hover{border-color:color-mix(in srgb,var(--rar) 55%,transparent)}
+.project-card:hover::after{opacity:1}
+.pj-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px}
+.pj-type{color:var(--rar)}
+.project-name{font-family:var(--head);font-weight:700;font-size:25px;line-height:1.1;margin-bottom:12px}
+.project-desc{color:#bdbab2;font-size:14.5px;flex:1}
+.project-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.project-stack{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+.project-link{display:flex;align-items:center;gap:6px;font-family:var(--head);font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--text);border:1px solid var(--line2);padding:6px 12px;white-space:nowrap;transition:.15s}
+.project-link:hover{border-color:var(--rar);color:var(--rar)}
+.project-link svg{width:15px;height:15px}
+
+/* stack buy menu */
+.bm-head{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--line);font-family:var(--head);font-weight:700;font-size:18px;letter-spacing:3px}
+.bm-money{color:var(--green);font-family:var(--mono);font-size:14px;letter-spacing:1px}
+.bm-row{display:grid;grid-template-columns:190px 1fr;gap:20px;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center}
+.bm-row:last-child{border-bottom:none}
+.bm-cat{font-family:var(--head);font-weight:700;font-size:17px;letter-spacing:2px;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.bm-items{display:flex;flex-wrap:wrap;gap:8px}
+.bm-item{font-family:var(--head);font-weight:600;font-size:15px;letter-spacing:.5px;padding:6px 14px;background:rgba(255,255,255,.03);border:1px solid var(--line2);transition:.12s;user-select:none}
+.bm-item:hover{border-color:var(--amber);color:var(--amber);background:rgba(242,179,61,.07)}
+.bm-item.bought{animation:buy .35s}
+@keyframes buy{50%{background:rgba(143,209,106,.25);border-color:var(--green);color:var(--green)}}
+
+/* contact */
+#contact{padding-bottom:90px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+.contact-title{font-family:var(--head);font-weight:700;font-size:clamp(48px,7vw,96px);line-height:.9;text-transform:uppercase}
+.contact-title span{color:var(--amber)}
+.contact-sub{color:var(--muted);margin-top:18px;max-width:380px}
+.cc-bar{display:flex;justify-content:space-between;padding:9px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--muted)}
+.cc-body{font-family:var(--mono);font-size:13.5px;line-height:1.9;padding:18px 18px 8px;min-height:150px;white-space:pre-wrap;color:#cfccc4}
+.cc-body .ok{color:var(--green)}
+.cc-body .cmd{color:var(--amber)}
+.caret{display:inline-block;width:8px;height:15px;background:var(--amber);vertical-align:-2px;animation:blink 1s steps(2) infinite}
+.cc-actions{display:flex;flex-wrap:wrap;gap:10px;padding:16px 18px 20px}
+.cc-actions .btn-primary{padding:10px 22px;font-size:15px}
+.contact-link{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--text);border:1px solid var(--line2);padding:10px 14px;transition:.15s}
+.contact-link:hover{border-color:var(--amber);color:var(--amber)}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:26px 28px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer span{color:var(--amber)}
+
+/* console */
+#devconsole{position:fixed;left:0;right:0;top:0;height:min(46vh,420px);z-index:9500;background:rgba(8,10,12,.96);border-bottom:2px solid var(--amber);display:flex;flex-direction:column;font-family:var(--mono);font-size:13px;transform:translateY(-102%);transition:transform .2s ease-out}
+#devconsole.open{transform:none}
+.dc-title{padding:8px 16px;font-size:11px;letter-spacing:2px;color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.dc-log{flex:1;overflow-y:auto;padding:12px 16px;white-space:pre-wrap;color:#cfccc4;line-height:1.7}
+.dc-log .in{color:var(--amber)}
+.dc-log .err{color:var(--red)}
+#dcform{display:flex;gap:8px;padding:10px 16px;border-top:1px solid var(--line);color:var(--amber)}
+#dcin{flex:1;background:none;border:none;outline:none;color:var(--text);font:inherit}
+
+@media (max-width:860px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:34px}
+  .sb-head{display:none}
+  .sb-row{grid-template-columns:1fr;gap:8px}
+  .sb-res{text-align:left}
+  .bm-row{grid-template-columns:1fr;gap:12px}
+  section{padding:90px 18px}
+  #hero{padding:0 22px}
+  .hero-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .ticker{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="ld-map">LOADING MAP</div>
+  <div class="ld-name">de_<span>portfolio</span></div>
+  <div class="ld-bar"><i></i></div>
+  <div class="ld-tip">TIP: press <kbd>~</kbd> to open the developer console.</div>
+</div>
+
+<div id="xhair" aria-hidden="true"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i><i class="d"></i></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">MR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-sec="about"><kbd>1</kbd>About</a></li>
+    <li><a href="#experience" data-sec="experience"><kbd>2</kbd>Experience</a></li>
+    <li><a href="#projects" data-sec="projects"><kbd>3</kbd>Projects</a></li>
+    <li><a href="#stack" data-sec="stack"><kbd>4</kbd>Stack</a></li>
+    <li><a href="#contact" data-sec="contact"><kbd>5</kbd>Contact</a></li>
+  </ul>
+  <button id="snd" class="snd-btn" aria-pressed="false">SND: OFF</button>
+</nav>
+
+<!-- HUD -->
+<div id="hud" aria-hidden="true">
+  <div class="hud-box hud-radar">
+    <svg viewBox="0 0 140 140" id="radar">
+      <polyline points="32,120 32,82 97,82 97,43 32,43 69,12" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="2 2"/>
+      <rect data-i="0" x="12" y="108" width="40" height="24"/><text x="16" y="128">SPAWN</text>
+      <rect data-i="1" x="12" y="68" width="40" height="28"/><text x="16" y="92">PROFILE</text>
+      <rect data-i="2" x="66" y="68" width="62" height="28"/><text x="70" y="92">HISTORY</text>
+      <rect data-i="3" x="66" y="28" width="62" height="30"/><text x="70" y="54">LOADOUT</text>
+      <rect data-i="4" x="12" y="28" width="40" height="30"/><text x="16" y="54">BUY</text>
+      <rect data-i="5" x="40" y="3" width="58" height="18"/><text x="44" y="16">SERVER</text>
+      <circle id="rdot" cx="32" cy="120" r="3.5" fill="#6ea4ee" stroke="#fff" stroke-width="1"/>
+    </svg>
+    <span class="hud-loc">LOC · <b id="loc">SPAWN</b></span>
+  </div>
+  <div class="hud-box hud-vitals">
+    <span><svg viewBox="0 0 20 20"><path d="M7 1h6v6h6v6h-6v6H7v-6H1V7h6z" fill="#e9e6de"/></svg>100</span>
+    <span><svg viewBox="0 0 20 20"><path d="M10 1l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V4z" fill="none" stroke="#e9e6de" stroke-width="2"/></svg>100</span>
+  </div>
+  <div class="hud-box hud-ammo">
+    <div class="rl">RELOADING</div>
+    <b id="ammo">30</b><span>/ <i id="reserve">90</i></span>
+  </div>
+</div>
+<div id="killfeed" aria-live="polite"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="hero-vig"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow hero-fade">// AI Engineer · ML &amp; Data Science · Full-Stack Developer · CS @ FAST NUCES</p>
+    <h1 class="hero-name" aria-label="Mohid Raheel Khan">
+      <span class="word w1">Mohid</span>
+      <span class="word w2">Raheel</span>
+      <span class="word w3">Khan</span>
+    </h1>
+    <p class="hero-desc hero-fade" style="--d:.1s">
+      Building intelligent systems, from RAG agents and ML pipelines to production web applications.
+      CGPA 3.66 · Karachi, Pakistan.
+    </p>
+    <div class="hero-actions hero-fade" style="--d:.2s">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-hint hero-fade" style="--d:.4s">
+    <span class="key"><kbd>LMB</kbd> fire</span><span class="key"><kbd>R</kbd> reload</span><span class="key"><kbd>1-5</kbd> sections</span><span class="key"><kbd>~</kbd> console</span>
+    <span class="touch">TAP TO FIRE</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="ticker-item">Python</span><span class="ticker-item">React</span><span class="ticker-item">Node.js</span><span class="ticker-item">Machine Learning</span><span class="ticker-item">Django</span><span class="ticker-item">PostgreSQL</span><span class="ticker-item">scikit-learn</span><span class="ticker-item">Docker</span><span class="ticker-item">MongoDB</span><span class="ticker-item">OpenAI APIs</span><span class="ticker-item">Computer Vision</span><span class="ticker-item">REST APIs</span><span class="ticker-item">MERN Stack</span><span class="ticker-item">Data Science</span><span class="ticker-item">LangGraph</span><span class="ticker-item">RAG</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Next.js</span>
+    <span class="ticker-item">Python</span><span class="ticker-item">React</span><span class="ticker-item">Node.js</span><span class="ticker-item">Machine Learning</span><span class="ticker-item">Django</span><span class="ticker-item">PostgreSQL</span><span class="ticker-item">scikit-learn</span><span class="ticker-item">Docker</span><span class="ticker-item">MongoDB</span><span class="ticker-item">OpenAI APIs</span><span class="ticker-item">Computer Vision</span><span class="ticker-item">REST APIs</span><span class="ticker-item">MERN Stack</span><span class="ticker-item">Data Science</span><span class="ticker-item">LangGraph</span><span class="ticker-item">RAG</span><span class="ticker-item">FastAPI</span><span class="ticker-item">Next.js</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap">
+  <div class="sec-head reveal"><span class="sec-key">1</span><div><div class="sec-label">Player Profile // About</div><h2 class="section-title">Engineer. Builder. Learner.</h2></div></div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-text">CS undergraduate at <strong>FAST NUCES Karachi</strong>, specialising in <strong>Machine Learning</strong>, Data Science, and full-stack development.
+      I build things end-to-end: from training classifiers and designing REST APIs to shipping production-deployed apps for real clients.</p>
+      <p class="about-text">Most recently I built a <strong>RAG knowledge platform</strong> with a LangGraph agent at MATZ Solutions, answering from company documents with page-level citations. I care about clean code, good system design, and software that actually solves problems.</p>
+      <div class="edu panel">
+        <div class="edu-top"><span class="edu-deg">B.S. Computer Science · FAST NUCES, Karachi</span><span class="edu-yr">2023 – Present</span></div>
+        <div class="edu-label">Relevant coursework</div>
+        <div class="exp-tags"><span class="tag">DSA</span><span class="tag">Operating Systems</span><span class="tag">Database Systems</span><span class="tag">Computer Networks</span><span class="tag">Software Engineering</span><span class="tag">Data Science</span><span class="tag">Compiler Construction</span></div>
+      </div>
+    </div>
+    <div class="player-card panel reveal">
+      <div class="pc-top">
+        <div class="pc-avatar">MR</div>
+        <div><div class="pc-name">MOHID RAHEEL KHAN</div><div class="pc-sub">FAST NUCES · KARACHI</div></div>
+        <svg class="pc-rank" viewBox="0 0 44 44" aria-hidden="true"><path d="M6 18l16-9 16 9v6L22 15 6 24z M6 30l16-9 16 9v6L22 27 6 36z" fill="currentColor"/></svg>
+      </div>
+      <div class="pc-stats">
+        <div class="stat-card"><div class="stat-num">3.66</div><div class="stat-label">CGPA / 4.0</div></div>
+        <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">ML Projects</div></div>
+        <div class="stat-card"><div class="stat-num">30+</div><div class="stat-label">API Endpoints Built</div></div>
+        <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">Production Systems</div></div>
+      </div>
+      <div class="pc-status">READY · LOOKING FOR A TEAM</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- EXPERIENCE -->
+<section id="experience"><div class="wrap">
+  <div class="sec-head reveal"><span class="sec-key">2</span><div><div class="sec-label">Match History // Experience</div><h2 class="section-title">Where I've worked.</h2></div></div>
+  <div class="scoreboard panel reveal">
+    <div class="sb-head"><span>DATE</span><span>ROLE</span><span>RESULT</span></div>
+    <div class="sb-row">
+      <div class="exp-date">Aug – Oct 2026</div>
+      <div>
+        <div class="exp-role">AI Engineer Intern</div>
+        <div class="exp-company">MATZ Solutions · MATZ AI Knowledge Platform</div>
+        <p class="exp-desc">Built a retrieval-augmented assistant that answers from company documents with page-level citations: FastAPI backend on Render, Next.js admin dashboard on Vercel.</p>
+        <p class="exp-desc">Implemented the LangGraph agent: query routing, Qdrant retrieval, LLM relevance grading of chunks, groundedness verification and citation building.</p>
+        <p class="exp-desc">Built the PDF/DOCX/PPTX/XLSX ingestion pipeline and a Google Drive folder import; fixed silent extraction failures that were dropping pages from indexed documents.</p>
+        <div class="exp-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LangGraph</span><span class="tag">Qdrant</span><span class="tag">Supabase</span><span class="tag">Groq</span><span class="tag">Next.js</span><span class="tag">TanStack Query</span><span class="tag">Render</span><span class="tag">Vercel</span></div>
+      </div>
+      <div class="sb-res"><span class="res-mvp">★ MVP</span></div>
+    </div>
+    <div class="sb-row">
+      <div class="exp-date">Jun – Jul 2026</div>
+      <div>
+        <div class="exp-role">Freelance Full-Stack Developer</div>
+        <div class="exp-company">Cattle Farm Management System · cattle-farm-mu.vercel.app</div>
+        <p class="exp-desc">Replaced a complex multi-sheet Excel herd-management workflow with a production-deployed MERN dashboard for a real client. Implemented JWT auth, owner/animal CRUD, weekly weight tracking with interactive Recharts charts, one-click PDF reports per animal, and vaccination &amp; breeding history modules.</p>
+        <p class="exp-desc">Wrote custom Node.js seed scripts to migrate 3 seasons of real farm data (33 animals, 108 weight entries, 140 vaccination records) from messy Excel workbooks into MongoDB Atlas.</p>
+        <div class="exp-tags"><span class="tag">React (Vite)</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB Atlas</span><span class="tag">JWT</span><span class="tag">Recharts</span><span class="tag">jsPDF</span><span class="tag">Vercel</span><span class="tag">Render</span></div>
+      </div>
+      <div class="sb-res"><span class="res-win">WIN</span></div>
+    </div>
+    <div class="sb-row">
+      <div class="exp-date">Aug 2025</div>
+      <div>
+        <div class="exp-role">AI/ML Intern</div>
+        <div class="exp-company">Elevvo Pathways</div>
+        <p class="exp-desc">Completed five applied ML projects: exam-score prediction with linear &amp; polynomial regression, customer segmentation with K-Means &amp; elbow method, and a content-based movie recommendation system using TF-IDF, cosine similarity, and fuzzy title matching.</p>
+        <div class="exp-tags"><span class="tag">scikit-learn</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">TF-IDF</span><span class="tag">K-Means</span><span class="tag">Cosine Similarity</span></div>
+      </div>
+      <div class="sb-res"><span class="res-win">WIN</span></div>
+    </div>
+  </div>
+  <div class="medals reveal">
+    <div class="sec-label">Medals // Certifications</div>
+    <div class="medal-grid">
+      <div class="medal panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2l4 6 4-6" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><div class="medal-name">Retrieval-Augmented Generation (RAG)</div><div class="medal-meta">Coursera · Aug 2026</div></div></div>
+      <div class="medal panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2l4 6 4-6" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><div class="medal-name">Introduction to Data Science in Python</div><div class="medal-meta">DataCamp · Mar 2026</div></div></div>
+      <div class="medal panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2l4 6 4-6" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><div class="medal-name">AI-Assisted Coding for Developers</div><div class="medal-meta">DataCamp · Feb 2026</div></div></div>
+      <div class="medal panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2l4 6 4-6" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><div class="medal-name">Introduction to SQL</div><div class="medal-meta">DataCamp · Mar 2024</div></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PROJECTS -->
+<section id="projects"><div class="wrap">
+  <div class="sec-head reveal"><span class="sec-key">3</span><div><div class="sec-label">Loadout // Projects</div><h2 class="section-title">Things I've built.</h2></div></div>
+  <div class="projects-grid">
+    <article class="project-card panel reveal" style="--rar:#2fd4a0">
+      <div class="pj-top"><span>SLOT 01</span><span class="pj-type">RAG · AGENTS</span></div>
+      <h3 class="project-name">MATZ AI Knowledge Platform</h3>
+      <p class="project-desc">Retrieval-augmented assistant built during my internship at MATZ Solutions. A LangGraph agent routes queries, retrieves from Qdrant, grades chunk relevance and checks groundedness before answering with page-level citations. Ingests PDF, DOCX, PPTX and XLSX, plus Google Drive folders.</p>
+      <div class="project-footer">
+        <div class="project-stack">FastAPI · LangGraph<br>Qdrant · Supabase · Groq<br>Next.js · TanStack Query</div>
+        <span class="project-link pj-private">Internal</span>
+      </div>
+    </article>
+    <article class="project-card panel reveal" style="--rar:#e5484d">
+      <div class="pj-top"><span>SLOT 02</span><span class="pj-type">AI · VOICE</span></div>
+      <h3 class="project-name">Voice-Controlled AI Assistant</h3>
+      <p class="project-desc">A voice-driven Windows assistant using OpenAI tool calling to open/close apps, search the web in real time, manage reminders, and execute system controls: volume, screenshots, lock, restart, shutdown. Speech-to-text, TTS, silence-detecting mic recording and multithreading keep the UI responsive.</p>
+      <div class="project-footer">
+        <div class="project-stack">Python · GPT-4o-mini<br>Whisper · OpenAI TTS · Serper<br>Tkinter · sounddevice</div>
+        <a href="https://github.com/Mohidraheel/Ai-Personal-Assistant" target="_blank" rel="noopener" class="project-link">Inspect ↗</a>
+      </div>
+    </article>
+    <article class="project-card panel reveal" style="--rar:#d35ce0">
+      <div class="pj-top"><span>SLOT 03</span><span class="pj-type">ML · HEALTH</span></div>
+      <h3 class="project-name">Medical Diagnosis System</h3>
+      <p class="project-desc">Bernoulli Naive Bayes classifier trained on 4,920 samples across 132 binary symptom features and 41 disease classes. Ranked top-10 probability pipeline and a Tkinter GUI with real-time symptom search and live Matplotlib visualisation.</p>
+      <div class="project-footer">
+        <div class="project-stack">Python · scikit-learn<br>BernoulliNB · pandas<br>Tkinter · Matplotlib</div>
+        <a href="https://github.com/Mohidraheel/Medical-Diagnosis-System" target="_blank" rel="noopener" class="project-link">Inspect ↗</a>
+      </div>
+    </article>
+    <article class="project-card panel reveal" style="--rar:#8a6cf0">
+      <div class="pj-top"><span>SLOT 04</span><span class="pj-type">FULL-STACK · TEAM</span></div>
+      <h3 class="project-name">FAST Transport Management</h3>
+      <p class="project-desc">Full-stack university transport platform built in a 3-person Agile Scrum team over 8 sprints. 24 functional requirements, 9 modules. Atomic seat allocation with select_for_update(), event-driven fee verification via post_save signals, 15-model PostgreSQL schema, 30+ DRF endpoints and 6 automated test suites.</p>
+      <div class="project-footer">
+        <div class="project-stack">React 19 · Vite · Django 6<br>DRF · PostgreSQL 15 · JWT<br>Docker Compose · MapLibre GL</div>
+        <a href="https://github.com/Mohidraheel/Fast-Transport-System" target="_blank" rel="noopener" class="project-link">Inspect ↗</a>
+      </div>
+    </article>
+    <article class="project-card panel reveal" style="--rar:#6ea4ee">
+      <div class="pj-top"><span>SLOT 05</span><span class="pj-type">ML · NETWORK</span></div>
+      <h3 class="project-name">Intelligent Network Management</h3>
+      <p class="project-desc">ML-powered log-analysis system classifying CRITICAL, WARNING, and INFO events across router, firewall, switch, and server logs. Flask REST API for log upload, parsing, severity prediction, filtering, and network-health summaries.</p>
+      <div class="project-footer">
+        <div class="project-stack">Python · Flask<br>scikit-learn · Regex<br>REST API</div>
+        <a href="https://github.com/Mohidraheel/Intelligent-Network-Management" target="_blank" rel="noopener" class="project-link">Inspect ↗</a>
+      </div>
+    </article>
+    <article class="project-card panel reveal" style="--rar:#f2b33d">
+      <div class="pj-top"><span>SLOT 06</span><span class="pj-type">PRODUCTION · LIVE</span></div>
+      <h3 class="project-name">Cattle Farm Management System</h3>
+      <p class="project-desc">Production MERN app for a real client. Migrated 3 seasons of farm data from Excel into MongoDB Atlas. Interactive Recharts weight tracking, one-click PDF generation, vaccination and breeding history modules.</p>
+      <div class="project-footer">
+        <div class="project-stack">React · Node.js<br>Express · MongoDB<br>JWT · Recharts</div>
+        <a href="https://cattle-farm-mu.vercel.app" target="_blank" rel="noopener" class="project-link">Live ↗</a>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<!-- STACK -->
+<section id="stack"><div class="wrap">
+  <div class="sec-head reveal"><span class="sec-key">4</span><div><div class="sec-label">Buy Menu // Stack</div><h2 class="section-title">Tools &amp; technologies.</h2></div></div>
+  <div class="buymenu panel reveal">
+    <div class="bm-head"><span>BUY MENU</span><span class="bm-money">$ ∞ · ALL OWNED</span></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>1</kbd>Languages</div><div class="bm-items"><span class="bm-item">Python</span><span class="bm-item">JavaScript</span><span class="bm-item">C</span><span class="bm-item">C++</span><span class="bm-item">SQL</span></div></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>2</kbd>AI / LLM</div><div class="bm-items"><span class="bm-item">LangGraph</span><span class="bm-item">RAG</span><span class="bm-item">Qdrant</span><span class="bm-item">Groq</span><span class="bm-item">OpenAI APIs</span><span class="bm-item">Whisper</span></div></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>3</kbd>ML / Data</div><div class="bm-items"><span class="bm-item">scikit-learn</span><span class="bm-item">pandas</span><span class="bm-item">NumPy</span><span class="bm-item">Matplotlib</span><span class="bm-item">XGBoost</span><span class="bm-item">K-Means</span><span class="bm-item">SMOTE</span><span class="bm-item">TF-IDF</span><span class="bm-item">PCA</span><span class="bm-item">Naive Bayes</span><span class="bm-item">Cosine Similarity</span><span class="bm-item">EDA</span></div></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>4</kbd>Backend</div><div class="bm-items"><span class="bm-item">FastAPI</span><span class="bm-item">Node.js</span><span class="bm-item">Express.js</span><span class="bm-item">Django</span><span class="bm-item">DRF</span><span class="bm-item">Flask</span><span class="bm-item">Supabase</span><span class="bm-item">JWT Auth</span><span class="bm-item">REST API Design</span></div></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>5</kbd>Frontend</div><div class="bm-items"><span class="bm-item">React (Vite)</span><span class="bm-item">Next.js</span><span class="bm-item">TanStack Query</span><span class="bm-item">React Router</span><span class="bm-item">Recharts</span><span class="bm-item">Axios</span><span class="bm-item">HTML / CSS</span></div></div>
+    <div class="bm-row"><div class="bm-cat"><kbd>6</kbd>Tools</div><div class="bm-items"><span class="bm-item">Git</span><span class="bm-item">GitHub</span><span class="bm-item">Docker</span><span class="bm-item">Docker Compose</span><span class="bm-item">PostgreSQL</span><span class="bm-item">MongoDB Atlas</span><span class="bm-item">Render</span><span class="bm-item">Vercel</span><span class="bm-item">Linux</span><span class="bm-item">VS Code</span></div></div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap">
+  <div class="sec-head reveal"><span class="sec-key">5</span><div><div class="sec-label">Join Server // Contact</div></div></div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <h2 class="contact-title">Let's build<br><span>something.</span></h2>
+      <p class="contact-sub">Open to internships, freelance work and full-time roles in ML and full-stack engineering.</p>
+    </div>
+    <div class="panel reveal" id="cc">
+      <div class="cc-bar"><span>CONSOLE</span><span>mohid@portfolio</span></div>
+      <div class="cc-body" id="ccbody"><span class="cmd">] connect mohid.raheel12@gmail.com</span>
+Connecting to mohid.raheel12@gmail.com...
+<span class="ok">Server is open to new opportunities.</span></div>
+      <div class="cc-actions">
+        <a href="mailto:mohid.raheel12@gmail.com" class="btn-primary">Join Server ↗</a>
+        <a href="https://github.com/Mohidraheel" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+        <a href="https://linkedin.com/in/mohid-raheel/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+        <a href="tel:+923052047651" class="contact-link">+92 305 204 7651</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <p>GG WP · © 2026 <span>Mohid Raheel Khan</span></p>
+  <p>Karachi, Pakistan · FAST NUCES</p>
+</footer>
+
+<div id="devconsole" role="dialog" aria-label="Developer console" aria-hidden="true">
+  <div class="dc-title"><span>DEVELOPER CONSOLE</span><span>type "help" · Esc to close</span></div>
+  <div class="dc-log" id="dclog"></div>
+  <form id="dcform" autocomplete="off"><span>]</span><input id="dcin" spellcheck="false" aria-label="Console command"></form>
+</div>
+
+<script>
+(function () {
+  const root = document.documentElement;
+  root.classList.add('js');
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(pointer: fine)').matches;
+  const hero = $('#hero');
+  const words = $$('.hero-name .word');
+
+  /* ── SOUND (synthesised, no audio files) ── */
+  const Snd = {
+    on: false, ctx: null, noise: null,
+    init() {
+      if (this.ctx) return;
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const c = this.ctx, len = Math.floor(c.sampleRate * 0.3);
+      this.noise = c.createBuffer(1, len, c.sampleRate);
+      const d = this.noise.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3.5);
+    },
+    shot() {
+      if (!this.on) return;
+      this.init();
+      const c = this.ctx, t = c.currentTime;
+      const n = c.createBufferSource(); n.buffer = this.noise;
+      const f = c.createBiquadFilter(); f.type = 'lowpass';
+      f.frequency.setValueAtTime(5000, t); f.frequency.exponentialRampToValueAtTime(250, t + 0.22);
+      const g = c.createGain(); g.gain.setValueAtTime(0.45, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+      n.connect(f).connect(g).connect(c.destination); n.start(t);
+      const o = c.createOscillator(); o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(38, t + 0.12);
+      const og = c.createGain(); og.gain.setValueAtTime(0.7, t); og.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+      o.connect(og).connect(c.destination); o.start(t); o.stop(t + 0.16);
+    },
+    tick(freq = 1200, dur = 0.04, vol = 0.12) {
+      if (!this.on) return;
+      this.init();
+      const c = this.ctx, t = c.currentTime, o = c.createOscillator(), g = c.createGain();
+      o.type = 'square'; o.frequency.value = freq;
+      g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur);
+    }
+  };
+  const sndBtn = $('#snd');
+  function toggleSound(force) {
+    Snd.on = typeof force === 'boolean' ? force : !Snd.on;
+    if (Snd.on) { Snd.init(); Snd.ctx.resume(); }
+    sndBtn.setAttribute('aria-pressed', Snd.on);
+    sndBtn.textContent = 'SND: ' + (Snd.on ? 'ON' : 'OFF');
+    return Snd.on;
+  }
+  sndBtn.addEventListener('click', () => toggleSound());
+
+  /* ── KILL FEED ── */
+  const feed = $('#killfeed');
+  const GUN = '<svg viewBox="0 0 64 16" aria-hidden="true"><path d="M1 6l9-1 2 2h24V5h14v2h13v2H44l-2 1h-2l-2 5h-4l1-5h-7l-2 4h-4l1-4H12l-2 1H1z" fill="currentColor"/></svg>';
+  const HS = '<svg class="kf-hs" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 0v5M8 11v5M0 8h5M11 8h5" stroke="currentColor" stroke-width="1.8"/></svg>';
+  function kill(victim, hs = true) {
+    const el = document.createElement('div');
+    el.className = 'kf';
+    el.innerHTML = '<span class="kf-a">MOHID</span>' + GUN + (hs ? HS : '') + '<span class="kf-v"></span>';
+    el.querySelector('.kf-v').textContent = victim;
+    feed.prepend(el);
+    while (feed.children.length > 5) feed.lastChild.remove();
+    setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 450); }, 6500);
+  }
+
+  /* ── HUD API (used by the 3D module) ── */
+  const ammoEl = $('#ammo'), resEl = $('#reserve'), hud = $('#hud');
+  window.HUD = {
+    reduce, sound: Snd, revealed: false,
+    kill,
+    setAmmo(a, r) { ammoEl.textContent = a; resEl.textContent = r; ammoEl.classList.toggle('low', a <= 5); },
+    setReloading(b) { hud.classList.toggle('reloading', b); },
+    revealWord(i) { if (words[i]) words[i].classList.add('hit'); },
+    revealAll() { this.revealed = true; words.forEach(w => w.classList.add('instant')); },
+    introDone() { hero.classList.add('intro-done'); },
+    loaded() { $('#loader').classList.add('done'); },
+    shake() { if (reduce) return; hero.classList.remove('shake'); void hero.offsetWidth; hero.classList.add('shake'); },
+    onReload: null
+  };
+  // Fallback if WebGL or the CDN fails: show everything.
+  setTimeout(() => { if (!window.__sceneOK) { HUD.loaded(); HUD.revealAll(); HUD.introDone(); } }, 4000);
+
+  /* ── CROSSHAIR + DOM BULLET HOLES ── */
+  const xh = $('#xhair');
+  if (fine) {
+    document.body.classList.add('xh');
+    addEventListener('mousemove', e => { xh.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; });
+    document.addEventListener('mouseover', e => {
+      xh.classList.toggle('hover', !!e.target.closest('a,button,input,.bm-item,.hud-radar rect'));
+    });
+  }
+  function xhFire() { xh.classList.add('fire'); setTimeout(() => xh.classList.remove('fire'), 90); }
+  window.HUD.xhFire = xhFire;
+  document.addEventListener('click', e => {
+    if (e.target.closest('a,button,input,#hero,#devconsole,.bm-item,.hud-radar')) return;
+    if (String(getSelection())) return;
+    const h = document.createElement('div');
+    h.className = 'bhole';
+    h.style.left = e.pageX + 'px'; h.style.top = e.pageY + 'px';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 2500);
+    xhFire(); Snd.shot();
+  });
+
+  /* ── BUY MENU ── */
+  $$('.bm-item').forEach(b => b.addEventListener('click', () => {
+    b.classList.remove('bought'); void b.offsetWidth; b.classList.add('bought'); Snd.tick(880, 0.06);
+  }));
+
+  /* ── SCROLL REVEAL + SECTION KILL FEED ── */
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }), { threshold: 0.12 });
+  $$('.reveal').forEach(el => ro.observe(el));
+  const victims = { about: ['IMPOSTER SYNDROME', false], experience: ['MESSY EXCEL SHEETS', true], projects: ['PRODUCTION BUGS', true], stack: ['DEPENDENCY HELL', false], contact: ['YOUR HIRING PROBLEM', true] };
+  const so = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting && victims[e.target.id]) { kill(...victims[e.target.id]); delete victims[e.target.id]; }
+  }), { threshold: 0.3 });
+  Object.keys(victims).forEach(id => so.observe(document.getElementById(id)));
+  new IntersectionObserver(([e]) => document.body.classList.toggle('in-hero', e.isIntersecting), { threshold: 0.25 }).observe(hero);
+
+  /* ── RADAR + ACTIVE NAV ── */
+  const zones = ['hero', 'about', 'experience', 'projects', 'stack', 'contact'];
+  const names = ['SPAWN', 'PROFILE', 'HISTORY', 'LOADOUT', 'BUY ZONE', 'SERVER'];
+  const centers = [[32, 120], [32, 82], [97, 82], [97, 43], [32, 43], [69, 12]];
+  const dot = $('#rdot'), loc = $('#loc'), rooms = $$('#radar rect'), navA = $$('.nav-links a');
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    const y = scrollY + innerHeight * 0.4;
+    const tops = zones.map(id => document.getElementById(id).offsetTop);
+    let i = 0;
+    tops.forEach((t, k) => { if (y >= t) i = k; });
+    const nx = Math.min(i + 1, tops.length - 1);
+    const f = i === nx ? 0 : Math.min(1, Math.max(0, (y - tops[i]) / (tops[nx] - tops[i])));
+    dot.setAttribute('cx', centers[i][0] + (centers[nx][0] - centers[i][0]) * f);
+    dot.setAttribute('cy', centers[i][1] + (centers[nx][1] - centers[i][1]) * f);
+    loc.textContent = names[i];
+    rooms.forEach((r, k) => r.classList.toggle('on', k === i));
+    navA.forEach(a => a.classList.toggle('active', a.dataset.sec === zones[i]));
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+  rooms.forEach(r => r.addEventListener('click', () => jump(zones[+r.dataset.i])));
+
+  function jump(id) { document.getElementById(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+
+  /* ── PROJECT CARD TILT ── */
+  if (fine && !reduce) $$('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.transform = `perspective(700px) rotateX(${(y - .5) * -8}deg) rotateY(${(x - .5) * 10}deg)`;
+      card.style.setProperty('--mx', x * 100 + '%'); card.style.setProperty('--my', y * 100 + '%');
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+
+  /* ── CONTACT CONSOLE TYPING ── */
+  const ccb = $('#ccbody');
+  const ccLines = [
+    ['cmd', '] connect mohid.raheel12@gmail.com'],
+    ['', 'Connecting to mohid.raheel12@gmail.com...'],
+    ['', 'Sending handshake... OK'],
+    ['ok', 'Server is open to new opportunities.']
+  ];
+  if (!reduce) {
+    let typed = false;
+    new IntersectionObserver(([e], o) => {
+      if (!e.isIntersecting || typed) return;
+      typed = true; o.disconnect();
+      ccb.textContent = '';
+      let li = 0, ci = 0, span = null;
+      const caret = document.createElement('span'); caret.className = 'caret';
+      (function step() {
+        if (li >= ccLines.length) { ccb.appendChild(caret); return; }
+        const [cls, text] = ccLines[li];
+        if (!span) { span = document.createElement('span'); if (cls) span.className = cls; ccb.appendChild(span); ccb.appendChild(caret); }
+        span.textContent = text.slice(0, ++ci);
+        if (ci >= text.length) { ccb.insertBefore(document.createTextNode('\n'), caret); li++; ci = 0; span = null; setTimeout(step, 280); }
+        else setTimeout(step, cls === 'cmd' ? 32 : 14);
+      })();
+    }, { threshold: 0.5 }).observe(ccb);
+  }
+
+  /* ── DEVELOPER CONSOLE ── */
+  const dc = $('#devconsole'), dlog = $('#dclog'), din = $('#dcin');
+  let dcOpen = false;
+  function print(text, cls) { const d = document.createElement('div'); if (cls) d.className = cls; d.textContent = text; dlog.appendChild(d); dlog.scrollTop = dlog.scrollHeight; }
+  function toggleConsole(force) {
+    dcOpen = typeof force === 'boolean' ? force : !dcOpen;
+    dc.classList.toggle('open', dcOpen); dc.setAttribute('aria-hidden', !dcOpen);
+    if (dcOpen) { if (!dlog.children.length) print('Portfolio console. Type "help" for commands.'); setTimeout(() => din.focus(), 50); }
+    else din.blur();
+  }
+  const go = id => () => { jump(id); toggleConsole(false); return 'Moving to ' + id + '...'; };
+  const cmds = {
+    help: () => ['Commands:', '  about | experience | projects | stack | contact   jump to a section',
+      '  github | linkedin | email                        open a link', '  whoami | sound | clear                           misc', '  ...plus a few hidden ones.'].join('\n'),
+    about: go('about'), experience: go('experience'), projects: go('projects'), stack: go('stack'), contact: go('contact'),
+    github: () => { open('https://github.com/Mohidraheel', '_blank'); return 'Opening GitHub...'; },
+    linkedin: () => { open('https://linkedin.com/in/mohid-raheel/', '_blank'); return 'Opening LinkedIn...'; },
+    email: () => { location.href = 'mailto:mohid.raheel12@gmail.com'; return 'Opening mail client...'; },
+    hire: () => { location.href = 'mailto:mohid.raheel12@gmail.com?subject=Let%27s%20work%20together'; return 'Good call. Opening mail client...'; },
+    connect: () => cmds.hire(),
+    whoami: () => 'Mohid Raheel Khan · ML & Full-Stack Engineer · FAST NUCES Karachi',
+    sound: () => 'Sound ' + (toggleSound() ? 'ON' : 'OFF'),
+    clear: () => { dlog.innerHTML = ''; return ''; },
+    echo: (...a) => a.join(' '),
+    sv_cheats: v => v === '1' ? 'Cheats not required. Every skill on this page is legit.' : 'sv_cheats = 0',
+    noclip: () => 'noclip is disabled on official servers.',
+    god: () => 'Godmode unavailable. Bugs can still hurt.',
+    reload: () => { HUD.onReload && HUD.onReload(); return 'Reloading...'; },
+    quit: () => "Can't quit now. Try \"contact\" instead.",
+    exit: () => cmds.quit()
+  };
+  $('#dcform').addEventListener('submit', e => {
+    e.preventDefault();
+    const raw = din.value.trim(); din.value = '';
+    if (!raw) return;
+    print('] ' + raw, 'in');
+    const [c, ...args] = raw.split(/\s+/);
+    const fn = cmds[c.toLowerCase()];
+    if (fn) { const out = fn(...args); if (out) print(out); }
+    else print('Unknown command "' + c + '". Type "help".', 'err');
+  });
+
+  /* ── KEYBINDS ── */
+  const slots = ['about', 'experience', 'projects', 'stack', 'contact'];
+  addEventListener('keydown', e => {
+    if (e.key === '`' || e.key === '~') { e.preventDefault(); toggleConsole(); return; }
+    if (dcOpen) { if (e.key === 'Escape') toggleConsole(false); return; }
+    if (e.ctrlKey || e.metaKey || e.altKey || e.target.matches('input,textarea')) return;
+    if (/^[1-5]$/.test(e.key)) { jump(slots[+e.key - 1]); Snd.tick(); }
+    else if ((e.key === 'r' || e.key === 'R') && document.body.classList.contains('in-hero')) HUD.onReload && HUD.onReload();
+  });
+})();
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const HUD = window.HUD;
+window.__sceneOK = true;
+const hero = document.getElementById('hero');
+const canvas = document.getElementById('scene');
+const reduce = HUD.reduce;
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (err) {
+  HUD.loaded(); HUD.revealAll(); HUD.introDone();
+  throw err;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.25;
+
+const BG = 0x0a0c0f;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(BG);
+scene.fog = new THREE.Fog(BG, 7, 24);
+const camera = new THREE.PerspectiveCamera(60, 1, 0.03, 80);
+camera.position.set(0, 1.6, 4);
+scene.add(camera);
+
+/* ── procedural textures (no image files) ── */
+function tex(w, h, draw, rep) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); }
+  return t;
+}
+function grain(g, w, h, amt) {
+  const img = g.getImageData(0, 0, w, h), d = img.data;
+  for (let i = 0; i < d.length; i += 4) { const n = (Math.random() - .5) * amt; d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+  g.putImageData(img, 0, 0);
+}
+const wallTex = tex(512, 512, (g, w, h) => {
+  g.fillStyle = '#4b4336'; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 14; i++) {
+    const x = Math.random() * w, y = Math.random() * h, r = 40 + Math.random() * 120;
+    const gr = g.createRadialGradient(x, y, 0, x, y, r);
+    gr.addColorStop(0, `rgba(${Math.random() < .5 ? '20,16,10' : '110,96,74'},.25)`); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+  }
+  g.strokeStyle = 'rgba(0,0,0,.45)'; g.lineWidth = 3;
+  for (let y = 0; y <= h; y += 128) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+  for (let y = 0; y < h; y += 128) for (let x = (y / 128) % 2 ? 128 : 0; x <= w; x += 256) { g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + 128); g.stroke(); }
+  g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(0, h - 40, w, 40);
+  grain(g, w, h, 22);
+}, [8, 3]);
+const floorTex = tex(256, 256, (g, w, h) => {
+  g.fillStyle = '#2e2922'; g.fillRect(0, 0, w, h);
+  g.strokeStyle = 'rgba(0,0,0,.5)'; g.lineWidth = 2; g.strokeRect(1, 1, w - 2, h - 2);
+  g.beginPath(); g.moveTo(w / 2, 0); g.lineTo(w / 2, h); g.moveTo(0, h / 2); g.lineTo(w, h / 2); g.stroke();
+  grain(g, w, h, 26);
+}, [20, 20]);
+const crateTex = tex(256, 256, (g, w, h) => {
+  g.fillStyle = '#7b6542'; g.fillRect(0, 0, w, h);
+  g.strokeStyle = 'rgba(40,28,14,.5)'; g.lineWidth = 2;
+  for (let y = 0; y < h; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+  g.fillStyle = '#5a4729'; g.fillRect(0, 0, w, 22); g.fillRect(0, h - 22, w, 22); g.fillRect(0, 0, 22, h); g.fillRect(w - 22, 0, 22, h);
+  g.save(); g.translate(w / 2, h / 2); g.rotate(Math.PI / 4); g.fillRect(-170, -11, 340, 22); g.restore();
+  grain(g, w, h, 30);
+});
+const flashTex = tex(128, 128, (g, w, h) => {
+  const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  gr.addColorStop(0, 'rgba(255,255,240,1)'); gr.addColorStop(.25, 'rgba(255,200,90,.9)'); gr.addColorStop(1, 'rgba(255,120,20,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, w, h);
+  g.fillStyle = 'rgba(255,220,140,.9)';
+  for (let i = 0; i < 6; i++) { g.save(); g.translate(64, 64); g.rotate(i * Math.PI / 3); g.beginPath(); g.moveTo(0, -5); g.lineTo(62, 0); g.lineTo(0, 5); g.fill(); g.restore(); }
+});
+const holeTex = tex(64, 64, (g) => {
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(.22, 'rgba(10,8,6,1)'); gr.addColorStop(.38, 'rgba(70,60,48,.9)'); gr.addColorStop(.6, 'rgba(30,26,20,.35)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+  g.strokeStyle = 'rgba(0,0,0,.6)'; g.lineWidth = 1;
+  for (let i = 0; i < 5; i++) { const a = Math.random() * 6.28; g.beginPath(); g.moveTo(32, 32); g.lineTo(32 + Math.cos(a) * 24, 32 + Math.sin(a) * 24); g.stroke(); }
+});
+const smokeTex = tex(64, 64, (g) => {
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(200,190,170,.7)'); gr.addColorStop(1, 'rgba(200,190,170,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+});
+
+/* ── environment ── */
+const hitables = [];
+const wall = new THREE.Mesh(new THREE.PlaneGeometry(60, 22), new THREE.MeshStandardMaterial({ map: wallTex, roughness: .95 }));
+wall.position.set(0, 11, -6); scene.add(wall); hitables.push(wall);
+for (const s of [-1, 1]) {
+  const side = new THREE.Mesh(new THREE.PlaneGeometry(30, 22), new THREE.MeshStandardMaterial({ map: wallTex, roughness: .95 }));
+  side.position.set(s * 11, 11, 5); side.rotation.y = -s * Math.PI / 2; scene.add(side); hitables.push(side);
+}
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ map: floorTex, roughness: .9 }));
+floor.rotation.x = -Math.PI / 2; scene.add(floor); hitables.push(floor);
+const crateMat = new THREE.MeshStandardMaterial({ map: crateTex, roughness: .85 });
+function crate(x, z, s, ry = 0, y = s / 2) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), crateMat);
+  m.position.set(x, y, z); m.rotation.y = ry; scene.add(m); hitables.push(m);
+}
+crate(5.6, -3.2, 1.6, .1); crate(5.5, -3.1, 1.4, .45, 2.3); crate(7.6, -1.2, 1.2, -.2);
+crate(-7.2, -4.4, 1.8, .3); crate(-5.6, -4.9, 1.1, -.1);
+const pillarMat = new THREE.MeshStandardMaterial({ color: 0x3a342b, roughness: .9 });
+for (const [x, z] of [[-9, -2.5], [9.2, -4.6]]) {
+  const p = new THREE.Mesh(new THREE.BoxGeometry(1.3, 12, 1.3), pillarMat); p.position.set(x, 6, z); scene.add(p); hitables.push(p);
+}
+const lampBox = new THREE.Mesh(new THREE.BoxGeometry(1.6, .12, .3), new THREE.MeshBasicMaterial({ color: 0xffd9a0 }));
+lampBox.position.set(1.5, 6.4, -4); scene.add(lampBox);
+
+scene.add(new THREE.HemisphereLight(0xc8d6ff, 0x2a2318, 1.15));
+const sun = new THREE.DirectionalLight(0xffd8a8, 1.5); sun.position.set(6, 9, 6); scene.add(sun);
+const lamp = new THREE.PointLight(0xffb15c, 2.4, 16, 0); lamp.position.set(1.5, 5.8, -3.4); scene.add(lamp);
+const fill = new THREE.PointLight(0xfff1dc, 1.6, 2.5, 0); fill.position.set(.4, .3, 0); camera.add(fill);
+
+// floating dust
+const DUST = 260, dpos = new Float32Array(DUST * 3);
+for (let i = 0; i < DUST; i++) { dpos[i * 3] = (Math.random() - .5) * 20; dpos[i * 3 + 1] = Math.random() * 7; dpos[i * 3 + 2] = -6 + Math.random() * 10; }
+const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute('position', new THREE.BufferAttribute(dpos, 3));
+const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0xd8c7a0, size: .025, transparent: true, opacity: .45, depthWrite: false }));
+scene.add(dust);
+
+/* ── viewmodel rifle (original low-poly design) ── */
+const gun = new THREE.Group();
+const metal = new THREE.MeshStandardMaterial({ color: 0x2c2f34, metalness: .65, roughness: .42 });
+const dark = new THREE.MeshStandardMaterial({ color: 0x17191c, metalness: .4, roughness: .6 });
+const tan = new THREE.MeshStandardMaterial({ color: 0x8c7552, metalness: .1, roughness: .75 });
+const olive = new THREE.MeshStandardMaterial({ color: 0x3d4635, roughness: .9 });
+const glove = new THREE.MeshStandardMaterial({ color: 0x232527, roughness: .85 });
+function part(geo, mat, x, y, z, rx = 0) { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.rotation.x = rx; gun.add(m); return m; }
+const B = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+part(B(.07, .09, .42), metal, 0, 0, 0);                    // receiver
+part(B(.072, .075, .30), tan, 0, -.004, -.34);             // handguard
+part(B(.05, .012, .5), dark, 0, .052, -.1);                 // top rail
+const barrel = part(new THREE.CylinderGeometry(.012, .012, .3, 12), dark, 0, .012, -.62, Math.PI / 2);
+part(B(.032, .032, .07), dark, 0, .012, -.8);              // muzzle device
+part(B(.046, .17, .08), dark, 0, -.12, -.09, .28);          // magazine
+part(B(.04, .12, .05), dark, 0, -.09, .12, -.35);           // grip
+part(B(.055, .085, .27), tan, 0, -.012, .34);              // stock
+part(B(.016, .045, .016), dark, 0, .075, -.42);            // front sight
+part(B(.04, .035, .07), dark, 0, .072, .06);               // rear sight block
+part(B(.085, .075, .1), glove, .005, -.105, .12, -.3);      // grip hand
+part(B(.1, .1, .4), olive, .03, -.17, .36, .5);             // sleeve
+const muzzle = new THREE.Object3D(); muzzle.position.set(0, .012, -.85); gun.add(muzzle);
+const flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: flashTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+flash.scale.setScalar(.3); flash.visible = false; muzzle.add(flash);
+const flashLight = new THREE.PointLight(0xffaa55, 0, 8, 0); muzzle.add(flashLight);
+const base = { x: .27, y: -.27, z: -.55, ry: .07 };
+camera.add(gun);
+
+/* ── effects ── */
+const effects = [];
+const tmpV = new THREE.Vector3();
+const tracerGeo = new THREE.CylinderGeometry(.009, .009, 1, 6); tracerGeo.rotateX(Math.PI / 2);
+const tracerMat = new THREE.MeshBasicMaterial({ color: 0xffd28a, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+const holeMat = new THREE.MeshBasicMaterial({ map: holeTex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -4 });
+const holeGeo = new THREE.PlaneGeometry(.18, .18);
+const holes = [];
+const impactLight = new THREE.PointLight(0xffb060, 0, 4, 0); scene.add(impactLight);
+
+function addEffect(obj, max, update, end) { if (obj) scene.add(obj); effects.push({ obj, max, life: 0, update, end }); }
+
+function tracer(from, to, done) {
+  const len = from.distanceTo(to);
+  const m = new THREE.Mesh(tracerGeo, tracerMat);
+  m.scale.z = Math.min(1.8, len * .35);
+  m.position.copy(from); m.lookAt(to);
+  addEffect(m, Math.max(.05, len / 140), k => m.position.lerpVectors(from, to, k), done);
+}
+function impact(hit) {
+  const { point: p, normal: n } = hit;
+  // bullet hole decal
+  const h = new THREE.Mesh(holeGeo, holeMat);
+  h.position.copy(p).addScaledVector(n, .004); h.lookAt(tmpV.copy(p).add(n)); h.rotateZ(Math.random() * 6.28);
+  scene.add(h); holes.push(h);
+  if (holes.length > 40) scene.remove(holes.shift());
+  // sparks
+  const N = 28, pos = new Float32Array(N * 3), vel = [];
+  for (let i = 0; i < N; i++) {
+    pos[i * 3] = p.x; pos[i * 3 + 1] = p.y; pos[i * 3 + 2] = p.z;
+    vel.push(n.clone().multiplyScalar(1.5 + Math.random() * 3).add(new THREE.Vector3((Math.random() - .5) * 4, Math.random() * 3, (Math.random() - .5) * 4)));
+  }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const mat = new THREE.PointsMaterial({ color: 0xffc46b, size: .07, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+  const pts = new THREE.Points(g, mat);
+  let last = 0;
+  addEffect(pts, .7, (k, e) => {
+    const dt = e.life - last; last = e.life;
+    for (let i = 0; i < N; i++) { vel[i].y -= 9.8 * dt; pos[i * 3] += vel[i].x * dt; pos[i * 3 + 1] += vel[i].y * dt; pos[i * 3 + 2] += vel[i].z * dt; }
+    g.attributes.position.needsUpdate = true; mat.opacity = 1 - k;
+  }, () => { g.dispose(); mat.dispose(); });
+  // dust puff
+  const sm = new THREE.Sprite(new THREE.SpriteMaterial({ map: smokeTex, transparent: true, depthWrite: false }));
+  sm.position.copy(p).addScaledVector(n, .1);
+  addEffect(sm, 1.1, k => { sm.scale.setScalar(.25 + k * 1.3); sm.material.opacity = .55 * (1 - k); sm.position.y += .002; }, () => sm.material.dispose());
+  impactLight.position.copy(p).addScaledVector(n, .3); impactLight.intensity = 3;
+}
+
+/* ── firing ── */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+let ammo = 30, reserve = 90, reloading = false, reloadT = 0, kick = 0, punch = 0, flashT = 0, raise = 0, raising = false;
+function aim(x, y) {
+  camera.updateMatrixWorld();
+  ndc.set(x, y); ray.setFromCamera(ndc, camera);
+  const h = ray.intersectObjects(hitables, false)[0];
+  if (h) return { point: h.point.clone(), normal: h.face.normal.clone().transformDirection(h.object.matrixWorld) };
+  return null;
+}
+function fire(x, y, onHit, force) {
+  if (!force && (reloading || raise < .95)) return;
+  if (ammo <= 0) { reload(); return; }
+  ammo--; HUD.setAmmo(ammo, reserve);
+  kick = 1; punch = 1; flashT = .055;
+  flash.material.rotation = Math.random() * 6.28; flash.scale.setScalar(.22 + Math.random() * .14);
+  HUD.sound.shot(); HUD.xhFire && HUD.xhFire();
+  const hit = aim(x, y);
+  const from = muzzle.getWorldPosition(new THREE.Vector3());
+  const to = hit ? hit.point : ray.ray.at(30, new THREE.Vector3());
+  tracer(from, to, () => { if (hit) impact(hit); onHit && onHit(); });
+  if (ammo === 0) setTimeout(reload, 380);
+}
+function reload() {
+  if (reloading || ammo === 30) return;
+  reloading = true; reloadT = 0; HUD.setReloading(true);
+}
+HUD.onReload = reload;
+
+function toNdc(cx, cy) {
+  const r = canvas.getBoundingClientRect();
+  return [((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1];
+}
+hero.addEventListener('click', e => {
+  if (e.target.closest('a,button')) return;
+  fire(...toNdc(e.clientX, e.clientY));
+});
+let mx = 0, my = 0, px = 0, py = 0;
+addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+
+/* ── loop ── */
+let visible = true;
+new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+function resize() {
+  const w = hero.clientWidth, h = hero.clientHeight, portrait = w / h < 1;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.fov = portrait ? 74 : 60; camera.updateProjectionMatrix();
+  base.x = portrait ? .17 : .27; base.y = portrait ? -.3 : -.27;
+}
+addEventListener('resize', resize); resize();
+
+const clock = new THREE.Clock();
+function frame() {
+  requestAnimationFrame(frame);
+  const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime;
+  if (!visible) return;
+
+  if (raising) raise = Math.min(1, raise + dt / .6);
+  const r = 1 - Math.pow(1 - raise, 3);
+  let dip = 0;
+  if (reloading) {
+    reloadT += dt / 1.5; dip = Math.sin(Math.min(1, reloadT) * Math.PI);
+    if (reloadT >= 1) { const need = 30 - ammo; reserve = reserve >= need ? reserve - need : 90; ammo = 30; reloading = false; HUD.setReloading(false); HUD.setAmmo(ammo, reserve); }
+  }
+  kick *= Math.exp(-dt * 13); punch *= Math.exp(-dt * 10);
+  px += (mx - px) * Math.min(1, dt * 4); py += (my - py) * Math.min(1, dt * 4);
+  const sway = reduce ? 0 : 1;
+
+  gun.position.set(
+    base.x + Math.sin(t * 1.1) * .004 * sway - px * .012,
+    base.y + Math.sin(t * 2.2) * .003 * sway - (1 - r) * .55 - dip * .2 + py * .008,
+    base.z + kick * .06);
+  gun.rotation.set(kick * .1 - (1 - r) * .7 - dip * .45, base.ry - px * .03, dip * .7);
+  camera.rotation.set(-py * .025 * sway + punch * .012, -px * .04 * sway, 0);
+
+  if (flashT > 0) { flashT -= dt; flash.visible = true; flashLight.intensity = 6; }
+  else { flash.visible = false; flashLight.intensity = 0; }
+  impactLight.intensity *= Math.exp(-dt * 18);
+  lamp.intensity = 2.4 + (Math.random() < .01 ? -1.2 : 0);
+
+  if (sway) {
+    const a = dustGeo.attributes.position.array;
+    for (let i = 0; i < DUST; i++) { a[i * 3 + 1] += Math.sin(t * .3 + i) * .0006; a[i * 3] += .0007; if (a[i * 3] > 10) a[i * 3] = -10; }
+    dustGeo.attributes.position.needsUpdate = true;
+  }
+
+  for (let i = effects.length - 1; i >= 0; i--) {
+    const e = effects[i];
+    e.life += dt;
+    const k = Math.min(1, e.life / e.max);
+    e.update && e.update(k, e);
+    if (k >= 1) { if (e.obj) scene.remove(e.obj); effects.splice(i, 1); e.end && e.end(); }
+  }
+  renderer.render(scene, camera);
+}
+
+/* ── intro: raise rifle, one shot per word of the name ── */
+async function intro() {
+  renderer.render(scene, camera);
+  frame();
+  await Promise.race([document.fonts.ready, wait(1500)]);
+  HUD.loaded();
+  if (HUD.revealed || reduce) { raising = true; raise = 1; HUD.revealAll(); HUD.introDone(); return; }
+  await wait(500);
+  raising = true;
+  while (raise < 1) await wait(40);
+  await wait(250);
+  const words = [...document.querySelectorAll('.hero-name .word')];
+  for (let i = 0; i < words.length; i++) {
+    const b = words[i].getBoundingClientRect();
+    fire(...toNdc(b.left + b.width * .5, b.top + b.height * .55), () => { HUD.revealWord(i); HUD.shake(); }, true);
+    await wait(430);
+  }
+  await wait(350);
+  HUD.introDone();
+  HUD.kill('BUGS', true);
+}
+intro();
+</script>
+</body>
+</html>
